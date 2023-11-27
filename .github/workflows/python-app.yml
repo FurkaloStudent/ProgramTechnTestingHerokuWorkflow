@@ -71,4 +71,4 @@ jobs:
               docker buildx create --use
               docker buildx inspect
               docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-              docker buildx build --platform linux/amd64,linux/arm64 -t  $DOCKER_IMAGE -t $DOCKER_IMAGE_2 . --push
+              docker buildx build --platform linux/amd64,linux/arm64 -t  $DOCKER_USERNAME/workflowsandheroku:latest -t $DOCKER_USERNAME/workflowsandheroku:$GITHUB_SHA . --push
