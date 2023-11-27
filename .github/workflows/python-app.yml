@@ -63,3 +63,12 @@ jobs:
       run: |
               git push heroku main
               curl 'https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/'
+    - name: DockerHub
+      env : 
+              DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+              DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+              docker buildx create --use
+              docker buildx inspect
+              docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+              docker buildx build --platform linux/amd64,linux/arm64 -t  haktoid/workflowsandheroku:$GITHUB_SHA . --push
