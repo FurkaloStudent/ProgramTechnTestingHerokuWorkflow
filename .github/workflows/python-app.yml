@@ -71,4 +71,4 @@ jobs:
               docker buildx create --use
               docker buildx inspect
               docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-              docker buildx build --platform linux/amd64,linux/arm64 -t  haktoid/workflowsandheroku:$GITHUB_SHA . --push
+              docker buildx build --platform linux/amd64,linux/arm64 -t  $DOCKER_IMAGE:latest -t $DOCKER_IMAGE:$GITHUB_SHA . --push
